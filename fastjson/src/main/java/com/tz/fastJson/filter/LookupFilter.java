@@ -21,7 +21,7 @@ import com.tz.fastJson.util.PlaceholderUtil;
 public class LookupFilter extends MyAfterFilter<Lookup> {
   
   @Autowired
-  ConversionService conversionService;
+  private ConversionService conversionService;
 
   public LookupFilter(Class<Lookup> filterClazz) {
     super(Lookup.class);
