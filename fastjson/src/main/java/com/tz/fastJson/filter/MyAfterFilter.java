@@ -46,7 +46,7 @@ public abstract class MyAfterFilter<T extends Annotation> extends AfterFilter {
 
   protected abstract void loadInfo(Set<Serializable> var1, Map<String, Object> var2);
 
-  protected final void preload(Object obj) {
+  public final void preload(Object obj) {
     AnnotationScanner<T> scanner = new AnnotationScanner<T>() {
 
       @Override

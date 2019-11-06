@@ -8,6 +8,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.tz.fastJson.annotation.Lookup;
+import com.tz.fastJson.filter.LookupFilter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,9 +26,16 @@ public class WebMvcConfig extends WebMvcConfigurationSupport {
     super.configureMessageConverters(converters);
     // 1.需要先定义一个convert 转换消息的对象
     FastJsonHttpMessageConverter fastConverter = new FastJsonHttpMessageConverter();
+   
+
     // 2.添加fastJson的配置信息,比如，是否需要格式化返回的json数据
     
     FastJsonConfig fastJsonConfig = new FastJsonConfig();
+    
+    // 设置过滤器
+    LookupFilter lookupFilter=new LookupFilter(Lookup.class);
+    fastJsonConfig.setSerializeFilters(lookupFilter);
+    
     // 空值特别处理
     // WriteNullListAsEmpty 将Collection类型字段的字段空值输出为[]
     // WriteNullStringAsEmpty 将字符串类型字段的空值输出为空字符串 ""
