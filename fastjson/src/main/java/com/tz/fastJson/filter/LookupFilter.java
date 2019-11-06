@@ -22,10 +22,10 @@ import com.tz.fastJson.util.PlaceholderUtil;
 
 
 public class LookupFilter extends MyAfterFilter<Lookup> {
-  
-  private static Logger logger= LoggerFactory.getLogger(LookupFilter.class);
 
-  
+  private static Logger logger = LoggerFactory.getLogger(LookupFilter.class);
+
+
   @Autowired
   public ConversionService conversionService;
 
@@ -35,48 +35,48 @@ public class LookupFilter extends MyAfterFilter<Lookup> {
 
   @Override
   protected void loadInfo(Set<Serializable> ids, Map<String, Object> map) {
-    
+
     List<Pair> list = LookupData.getLookupData(ids);
     logger.info(ids.toString());
     if (list != null && !list.isEmpty()) {
-        list.forEach((p) -> {
-            map.put(p.getKey(), p.getValue());
-        });
+      list.forEach((p) -> {
+        map.put(p.getKey(), p.getValue());
+      });
     }
-    
+
   }
 
   @Override
   protected void preload(Field field, Object value, Lookup l) {
-//    String valueStr = (String) this.conversionService.convert(value, String.class);
-    String valueStr=value.toString();
+    // String valueStr = (String) this.conversionService.convert(value, String.class);
+    String valueStr = value.toString();
     Arrays.asList(valueStr.split(",")).forEach((t) -> {
-        if (StringUtils.isNotBlank(t)) {
-            Pair pair = new Pair(l.type(), t);
-            this.add(new Serializable[]{pair});
-        }
+      if (StringUtils.isNotBlank(t)) {
+        Pair pair = new Pair(l.type(), t);
+        this.add(new Serializable[] {pair});
+      }
 
     });
-    
+
   }
 
   @Override
   protected void doWrite(Map<String, Object> map, Field field, Object value, Lookup l) {
-//    String valueStr = (String) this.conversionService.convert(value, String.class);
-    String valueStr=value.toString();
+    // String valueStr = (String) this.conversionService.convert(value, String.class);
+    String valueStr = value.toString();
     String lookupName = field.getName() + "Desp";
     List<String> hashCode = new ArrayList<String>();
     Arrays.asList(valueStr.split(",")).forEach((t) -> {
-        String key = PlaceholderUtil.createJsonPlaceholder(new String[]{l.type(), t});
-        Object obj = map.get(key);
-        if (obj != null) {
-            hashCode.add(obj.toString());
-        }
+      String key = PlaceholderUtil.createJsonPlaceholder(new String[] {l.type(), t});
+      Object obj = map.get(key);
+      if (obj != null) {
+        hashCode.add(obj.toString());
+      }
 
     });
     String lookupDesp = ((String) hashCode.stream().collect(Collectors.joining("->"))).toString();
     this.writeKeyValue(lookupName, lookupDesp);
-    
+
   }
 
 }

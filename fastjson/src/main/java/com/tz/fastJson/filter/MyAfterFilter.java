@@ -26,9 +26,9 @@ public abstract class MyAfterFilter<T extends Annotation> extends AfterFilter {
 
   private final ThreadLocal<Set<Serializable>> tls;
   private final ThreadLocal<Map<String, Object>> tlinfo;
-  protected final Logger log ;
-  private final Set<ClassKey> ignoreClassCaches ;
-  private final Map<ClassKey, Field[]> fieldsCache ;
+  protected final Logger log;
+  private final Set<ClassKey> ignoreClassCaches;
+  private final Map<ClassKey, Field[]> fieldsCache;
   private final Class<T> filterClazz;
 
   public final void reset() {

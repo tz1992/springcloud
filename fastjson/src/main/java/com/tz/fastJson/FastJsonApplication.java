@@ -9,14 +9,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class FastJsonApplication {
-  
-  
-  
-  
-  
-public static void main(String[] args) {
-  
-	new SpringApplication(FastJsonApplication.class).run(args);
-	
-}
+
+
+
+  public static void main(String[] args) {
+
+    new SpringApplication(FastJsonApplication.class).run(args);
+
+  }
 }
