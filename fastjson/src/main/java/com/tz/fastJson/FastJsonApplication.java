@@ -2,8 +2,9 @@ package com.tz.fastJson;
 
 
 
-import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.tz.fastJson.boot.MyBootApplication;
 
 
 
@@ -14,7 +15,7 @@ public class FastJsonApplication {
 
   public static void main(String[] args) {
 
-    new SpringApplication(FastJsonApplication.class).run(args);
+    MyBootApplication.run(FastJsonApplication.class,args);
 
   }
 }

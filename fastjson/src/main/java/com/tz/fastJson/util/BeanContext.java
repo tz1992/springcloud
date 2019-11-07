@@ -20,7 +20,7 @@ public abstract class BeanContext {
   private static volatile boolean inited = false;
 
   public static void setBeanFactory(ApplicationContext beanFactory) {
-      beanFactory = beanFactory;
+	  BeanContext.beanFactory = beanFactory;
       appEnv = (AppEnv) beanFactory.getBean(AppEnv.class);
 
       try {
@@ -36,7 +36,7 @@ public abstract class BeanContext {
   }
 
   public static <T> List<T> getBeansOfType(Class<T> type) throws BeansException {
-      List<T> beans = new ArrayList(beanFactory.getBeansOfType(type).values());
+      List<T> beans = new ArrayList<T>(beanFactory.getBeansOfType(type).values());
       AnnotationAwareOrderComparator.sort(beans);
       return beans;
   }
