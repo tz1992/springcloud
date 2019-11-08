@@ -3,9 +3,7 @@ package com.tz.fastJson;
 
 
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
 import com.tz.fastJson.boot.MyBootApplication;
-
 
 
 @SpringBootApplication

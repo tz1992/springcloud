@@ -8,20 +8,18 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.core.annotation.AnnotationAwareOrderComparator;
-
-import com.tz.fastJson.entity.AppEnv;
 import com.tz.fastJson.service.JsonConversionService;
 
 public abstract class BeanContext {
   private static final Logger log = LoggerFactory.getLogger(BeanContext.class);
   private static ApplicationContext beanFactory;
-  private static AppEnv appEnv;
+
   private static JsonConversionService jsonConversionService;
   private static volatile boolean inited = false;
 
   public static void setBeanFactory(ApplicationContext beanFactory) {
 	  BeanContext.beanFactory = beanFactory;
-      appEnv = (AppEnv) beanFactory.getBean(AppEnv.class);
+     
 
       try {
           jsonConversionService = (JsonConversionService) beanFactory.getBean(JsonConversionService.class);
@@ -39,10 +37,6 @@ public abstract class BeanContext {
       List<T> beans = new ArrayList<T>(beanFactory.getBeansOfType(type).values());
       AnnotationAwareOrderComparator.sort(beans);
       return beans;
-  }
-
-  public static AppEnv getAppEnv() {
-      return appEnv;
   }
 
   public static JsonConversionService getJsonConversionService() {

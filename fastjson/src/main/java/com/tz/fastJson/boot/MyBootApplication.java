@@ -22,7 +22,7 @@ public class MyBootApplication {
 
 	  
 	  public static void run(Object source, String... args) {
-	    SpringApplication app = new SpringApplication((Class<?>[]) new Object[] { source });
+	    SpringApplication app = new SpringApplication( new Object[] { source });
 	    
 	    shutdown(app.run(args));
 	  }
