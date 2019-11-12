@@ -23,7 +23,6 @@ public class UrlController {
   @Path("/test")
   public Person test() {
     Person person = new Person("01", "jack",new Date());
-
     return person;
   }
 
