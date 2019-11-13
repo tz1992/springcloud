@@ -13,8 +13,8 @@ import org.springframework.stereotype.Component;
 import com.tz.fastJson.entity.Person;
 
 @Component
-@Produces({"application/json"})
-@Consumes({"application/json"})
+@Consumes({"application/json", "text/json"})
+@Produces({"application/json", "text/json"})
 @Path("/fastjson/router")
 public class UrlController {
 
@@ -24,6 +24,7 @@ public class UrlController {
   public Person test() {
     Person person = new Person("01", "jack",new Date());
     return person;
+    
   }
 
 }

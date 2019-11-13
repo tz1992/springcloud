@@ -117,7 +117,7 @@ public class FastJsonProvider extends Object
     if (!hasMatchingMediaType(mediaType)) {
       return false;
     }
-
+    
 
 
     if (_isIgnorableForReading(new ClassKey(type))) {
