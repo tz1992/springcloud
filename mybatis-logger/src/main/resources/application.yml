@@ -1,9 +1,19 @@
 spring:
   datasource:
     master:
-      jdbc-url: jdbc:mysql://localhost:3306/test
+      jdbc-url: jdbc:mysql://localhost:3306/share?useUnicode=true&characterEncoding=utf-8&useSSL=false
       username: root
       password: 123456
       driver-class-name: com.mysql.jdbc.Driver
     
-
+server:
+   name: logger
+   port: 1111
+   
+mybatis:
+ configuration:
+    map-underscore-to-camel-case: true
+    
+logging:
+   level:
+     com.tz.mybatis.logger.dao: debug
